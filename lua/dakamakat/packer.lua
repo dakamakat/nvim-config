@@ -19,8 +19,9 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+        requires = { 'kyazdani42/nvim-web-devicons' , opt = true }
     }
+
     use ('nvim-lua/plenary.nvim')
 
     use ('ThePrimeagen/harpoon')
@@ -30,6 +31,11 @@ return require('packer').startup(function(use)
     use ('mbbill/undotree')
 
     use ('tpope/vim-fugitive')
+
+    use {
+        'lewis6991/gitsigns.nvim',
+        -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
+    }
 
     use 'xiyaowong/transparent.nvim'
 
