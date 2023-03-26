@@ -1,9 +1,13 @@
 require('lualine').setup {
   options = {
-    icons_enabled = true,
+    --icons_enabled = true,
+    --theme = 'auto',
+    --component_separators = { left = '', right = ''},
+    --section_separators = { left = '', right = ''},
+    icons_enabled = false,
     theme = 'auto',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
+    component_separators = { left = ' ', right = ' '},
+    section_separators = { left = ' ', right = ' '},
     disabled_filetypes = {
       statusline = {},
       winbar = {},
