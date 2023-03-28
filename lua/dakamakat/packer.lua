@@ -16,7 +16,7 @@ return require('packer').startup(function(use)
 
     use 'nvim-lualine/lualine.nvim'
 
-    use ('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate'})
+    use ({'nvim-treesitter/nvim-treesitter',  run = ':TSUpdate' })
 
     use({ 'rose-pine/neovim', as = 'rose-pine' })
 
