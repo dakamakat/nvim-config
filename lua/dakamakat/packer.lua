@@ -14,6 +14,8 @@ return require('packer').startup(function(use)
 
     use "folke/trouble.nvim"
 
+    use "tpope/vim-commentary"
+
     use 'nvim-lualine/lualine.nvim'
 
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
