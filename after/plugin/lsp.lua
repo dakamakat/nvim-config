@@ -4,8 +4,21 @@ lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({buffer = bufnr})
 end)
 
+local cmp = require('cmp')
+local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_mappings = lsp.defaults.cmp_mappings({
+  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+  ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+  ["<C-Space>"] = cmp.mapping.complete(),
+})
+
+lsp.setup_nvim_cmp({
+  mapping = cmp_mappings
+})
+
 -- Fix Undefined global 'vim'
-lsp.configure('lua-language-server', {
+lsp.configure('lua_ls', {
     settings = {
         Lua = {
             diagnostics = {
