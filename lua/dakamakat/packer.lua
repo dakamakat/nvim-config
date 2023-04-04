@@ -4,7 +4,22 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-    -- Packer can manage itself
+    -- Visual
+
+    -- use { "ellisonleao/gruvbox.nvim" }
+
+    -- use({ 'rose-pine/neovim', as = 'rose-pine' })
+
+    -- use 'shaunsingh/nord.nvim'
+
+    use 'navarasu/onedark.nvim'
+
+    use 'nvim-lualine/lualine.nvim'
+
+    use 'xiyaowong/transparent.nvim'
+
+    -- end of visual
+    
     use 'wbthomason/packer.nvim'
 
     use {
@@ -16,11 +31,9 @@ return require('packer').startup(function(use)
 
     use "tpope/vim-commentary"
 
-    use 'nvim-lualine/lualine.nvim'
 
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
 
-    use({ 'rose-pine/neovim', as = 'rose-pine' })
 
     use('nvim-lua/plenary.nvim')
 
@@ -36,8 +49,6 @@ return require('packer').startup(function(use)
         'lewis6991/gitsigns.nvim',
         -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
     }
-
-    use 'xiyaowong/transparent.nvim'
 
     use {
         'VonHeikemen/lsp-zero.nvim',

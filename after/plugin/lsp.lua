@@ -30,7 +30,6 @@ lsp.configure('lua_ls', {
 
 lsp.setup()
 
-
 --LSP Actions
 --K: Displays hover information about the symbol under the cursor in a floating window. See :help vim.lsp.buf.hover().
 --

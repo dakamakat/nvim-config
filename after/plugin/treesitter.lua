@@ -10,7 +10,7 @@ ts.setup {
         enable = true,
         disable = {},
     },
-    ensure_installed = { "javascript", "typescript", "c_sharp", "lua", "rust" },
+    ensure_installed = { "html" , "javascript", "typescript", "c_sharp", "lua", "rust" },
     autotag = {
         enable = true,
     },
