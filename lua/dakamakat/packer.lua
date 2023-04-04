@@ -19,7 +19,7 @@ return require('packer').startup(function(use)
     use 'xiyaowong/transparent.nvim'
 
     -- end of visual
-    
+
     use 'wbthomason/packer.nvim'
 
     use {
@@ -34,6 +34,9 @@ return require('packer').startup(function(use)
 
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
 
+    use 'windwp/nvim-autopairs'
+
+    use 'windwp/nvim-ts-autotag'
 
     use('nvim-lua/plenary.nvim')
 
@@ -57,7 +60,7 @@ return require('packer').startup(function(use)
             -- LSP Support
             { 'neovim/nvim-lspconfig' }, -- Required
             {
-                               -- Optional
+                -- Optional
                 'williamboman/mason.nvim',
                 run = function()
                     pcall(vim.cmd, 'MasonUpdate')
@@ -66,9 +69,13 @@ return require('packer').startup(function(use)
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
             -- Autocompletion
-            { 'hrsh7th/nvim-cmp' }, -- Required
-            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'L3MON4D3/LuaSnip' }, -- Required
+            { 'hrsh7th/nvim-cmp' },         -- Required
+            { 'hrsh7th/cmp-nvim-lsp' },     -- Required
+            { 'L3MON4D3/LuaSnip' },         -- Required
+            { 'hrsh7th/cmp-buffer' },       -- Optional
+            { 'hrsh7th/cmp-path' },         -- Optional
+            { 'saadparwaiz1/cmp_luasnip' }, -- Optional
+            { 'hrsh7th/cmp-nvim-lsp' },     -- Optional
         }
     }
 end)
