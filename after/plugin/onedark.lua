@@ -30,7 +30,6 @@ onedark.setup  {
 
     -- Custom Highlights --
     colors = {
-        green = '#ffcccc'
     }, -- Override default colors
     highlights = {}, -- Override highlight groups
 

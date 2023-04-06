@@ -1,1 +1,1 @@
-wt "nvim %~2 %1"
+wt "nvr --servername unity $@"

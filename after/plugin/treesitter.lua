@@ -3,7 +3,7 @@ local ts = require("nvim-treesitter.configs")
 require 'nvim-treesitter.install'.compilers = { "clang" }
 
 ts.setup {
-    ensure_installed = { "javascript", "typescript", "c_sharp", "lua", "rust" },
+    ensure_installed = { "bicep", "javascript", "typescript", "c_sharp", "lua", "rust" },
 
     highlight = { enable = true },
     indent = { enable = true },

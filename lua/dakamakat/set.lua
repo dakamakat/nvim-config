@@ -1,4 +1,14 @@
-vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursordasda,sm:block-blinkwait175-blinkoff150-blinkon175"
+vim.opt.guicursor =
+"n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursordasda,sm:block-blinkwait175-blinkoff150-blinkon175"
+
+--set netrw as the default file explorer
+vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 3
+vim.g.netrw_browse_split = 0
+vim.g.netrw_altv = 0
+vim.g.netrw_winsize = 25
+
+
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -30,7 +40,6 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "95"
 
 if vim.loop.os_uname().sysname == 'Windows_NT' then
-
     -- Use Powershell Core, if not available Windows Powershell
     if vim.fn.executable('pwsh') == 1 then
         vim.opt.shell = 'pwsh'
@@ -47,4 +56,3 @@ if vim.loop.os_uname().sysname == 'Windows_NT' then
     vim.opt.shellquote = ''
     vim.opt.shellxquote = ''
 end
-

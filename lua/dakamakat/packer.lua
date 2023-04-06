@@ -77,4 +77,6 @@ return require('packer').startup(function(use)
             { 'hrsh7th/cmp-nvim-lsp' },     -- Optional
         }
     }
+    -- Project Switcher Config
+    use { "ahmedkhalf/project.nvim" }
 end)
