@@ -20,7 +20,10 @@ return require('packer').startup(function(use)
 
     -- end of visual
 
-    use 'wbthomason/packer.nvim'
+    use {
+        "williamboman/mason.nvim",
+        run = ":MasonUpdate" -- :MasonUpdate updates registry concatenates
+    }
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.x',
