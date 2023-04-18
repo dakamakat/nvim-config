@@ -4,6 +4,8 @@ local lsp = require('lsp-zero').preset({
     }
 })
 
+lsp.preset("recommended")
+
 local cmp = require("cmp")
 
 cmp.setup({
@@ -44,6 +46,10 @@ lsp.configure('lua_ls', {
 })
 
 lsp.setup()
+
+vim.diagnostic.config({
+    virtual_text = true
+})
 
 --LSP Actions
 --K: Displays hover information about the symbol under the cursor in a floating window. See :help vim.lsp.buf.hover().

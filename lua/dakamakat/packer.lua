@@ -4,8 +4,7 @@
 vim.cmd.packadd('packer.nvim')
 
 return require('packer').startup(function(use)
-
-    use {"wbthomason/packer.nvim", opt = true}
+    use { "wbthomason/packer.nvim", opt = true }
 
     -- Visual
 
@@ -13,9 +12,13 @@ return require('packer').startup(function(use)
 
     -- use({ 'rose-pine/neovim', as = 'rose-pine' })
 
+    use 'folke/tokyonight.nvim'
+
+    -- use "Shatur/neovim-ayu"
+
     -- use 'shaunsingh/nord.nvim'
 
-    use 'navarasu/onedark.nvim'
+    -- use 'navarasu/onedark.nvim'
 
     use 'nvim-lualine/lualine.nvim'
 
