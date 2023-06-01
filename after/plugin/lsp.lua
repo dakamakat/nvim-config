@@ -1,8 +1,4 @@
-local lsp = require('lsp-zero').preset({
-    manage_nvim_cmp = {
-        set_sources = 'recommended'
-    }
-})
+local lsp = require('lsp-zero')
 
 lsp.preset("recommended")
 
@@ -45,11 +41,23 @@ lsp.configure('lua_ls', {
     }
 })
 
+local lspconfig = require('lspconfig');
+
+lspconfig.csharp_ls.setup({
+    root_dir = function(startpath)
+        return lspconfig.util.root_pattern("*.sln")(startpath)
+            or lspconfig.util.root_pattern("*.csproj")(startpath)
+            or lspconfig.util.root_pattern("*.fsproj")(startpath)
+            or lspconfig.util.root_pattern(".git")(startpath)
+    end,
+})
+
 lsp.setup()
 
 vim.diagnostic.config({
     virtual_text = true
 })
+
 
 --LSP Actions
 --K: Displays hover information about the symbol under the cursor in a floating window. See :help vim.lsp.buf.hover().
