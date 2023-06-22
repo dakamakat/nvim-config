@@ -32,6 +32,13 @@ return require('packer').startup(function(use)
     }
 
     use {
+        'nvim-tree/nvim-tree.lua',
+        -- requires = {
+        --     'nvim-tree/nvim-web-devicons', -- optional
+        -- },
+    }
+
+    use {
         'nvim-telescope/telescope.nvim', tag = '0.1.1',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
@@ -67,8 +74,7 @@ return require('packer').startup(function(use)
         requires = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' }, -- Required
-            {
-                -- Optional
+            {                            -- Optional
                 'williamboman/mason.nvim',
                 run = function()
                     pcall(vim.cmd, 'MasonUpdate')
@@ -77,17 +83,20 @@ return require('packer').startup(function(use)
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
             -- Autocompletion
-            { "hrsh7th/nvim-cmp" },                    -- completion plugin
             { "hrsh7th/cmp-buffer" },                  -- buffer completions
             { "hrsh7th/cmp-path" },                    -- path completions
-            { "hrsh7th/cmp-cmdline" },                 -- cmdline completions
             { "saadparwaiz1/cmp_luasnip" },            -- snippet completions
             { "hrsh7th/cmp-nvim-lua" },                -- lua vim completions
-            { "hrsh7th/cmp-nvim-lsp" },                -- LSP completions
             { "hrsh7th/cmp-nvim-lsp-signature-help" }, -- function parameters completions
+
+            { 'hrsh7th/nvim-cmp' },                    -- Required
+            { 'hrsh7th/cmp-nvim-lsp' },                -- Required
             { 'L3MON4D3/LuaSnip' },                    -- Required
+
+            { 'rafamadriz/friendly-snippets' },
         }
     }
+
     -- Project Switcher Config
     use { "ahmedkhalf/project.nvim" }
 end)
