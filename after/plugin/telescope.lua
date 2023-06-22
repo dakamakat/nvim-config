@@ -1,4 +1,21 @@
-require('telescope').load_extension('projects')
+require("telescope").setup {
+    extensions = {
+        file_browser = {
+            -- disables netrw and use telescope-file-browser in its place
+            hijack_netrw = true,
+            mappings = {
+                ["i"] = {
+                    -- your custom insert mode mappings
+                },
+                ["n"] = {
+                    -- your custom normal mode mappings
+                },
+            },
+        },
+    },
+}
+
+require('telescope').load_extension 'projects'
 
 local builtin = require('telescope.builtin')
 
@@ -13,10 +30,10 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 
 --open project switcher
 vim.api.nvim_set_keymap(
-        'n',
-        '<C-p>',
-        ":lua require'telescope'.extensions.projects.projects{}<CR>",
-        {noremap = true, silent = true}
+    'n',
+    '<C-p>',
+    ":lua require'telescope'.extensions.projects.projects{}<CR>",
+    { noremap = true, silent = true }
 )
 -- custom keybindings
 vim.keymap.set('n', '<leader>fs', function()
