@@ -1,30 +1,14 @@
 local lsp = require('lsp-zero')
 
+local lspconfig = require('lspconfig');
+
 lsp.preset("recommended")
 
 local cmp = require("cmp")
 
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-        end,
-    },
-    mapping = cmp.mapping.preset.insert({
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.close(),
-        ['<CR>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true
-        }),
-    }),
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'buffer' },
-    }),
-})
+local cmp_action = require('lsp-zero').cmp_action()
+
+require('luasnip.loaders.from_vscode').lazy_load()
 
 lsp.on_attach(function(client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
@@ -41,7 +25,6 @@ lsp.configure('lua_ls', {
     }
 })
 
-local lspconfig = require('lspconfig');
 
 lspconfig.csharp_ls.setup({
     root_dir = function(startpath)
@@ -54,10 +37,44 @@ lspconfig.csharp_ls.setup({
 
 lsp.setup()
 
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.close(),
+        ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true
+        }),
+        ['<Tab>'] = cmp_action.luasnip_supertab(),
+        ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+    }),
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'nvim_cmp' },
+        { name = 'luasnip',                keyword_length = 2 },
+        { name = 'buffer',                 keyword_length = 3 },
+        { name = 'path' },
+        { name = 'nvim_lsp_signature_help' },
+        { name = 'nvim_lua' },
+    },
+    experimental = {
+        native_menu = false,
+        ghost_text = true,
+    }
+})
+
 vim.diagnostic.config({
     virtual_text = true
 })
 
+vim.o.shell = vim.fn.executable('pwsh') and 'pwsh' or 'powershell'
 
 --LSP Actions
 --K: Displays hover information about the symbol under the cursor in a floating window. See :help vim.lsp.buf.hover().
