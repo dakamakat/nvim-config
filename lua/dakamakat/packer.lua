@@ -1,10 +1,7 @@
 --This file can be loaded by calling `lua require('plugins')` from your init.vim
 
--- Only required if you have packer configured as `opt`
-vim.cmd.packadd('packer.nvim')
-
 return require('packer').startup(function(use)
-    use { "wbthomason/packer.nvim", opt = true }
+    use 'wbthomason/packer.nvim'
 
     -- Visual
 
@@ -67,7 +64,8 @@ return require('packer').startup(function(use)
         requires = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' }, -- Required
-            {                            -- Optional
+            {
+                -- Optional
                 'williamboman/mason.nvim',
                 run = function()
                     pcall(vim.cmd, 'MasonUpdate')
