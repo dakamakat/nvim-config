@@ -1,8 +1,6 @@
 --This file can be loaded by calling `lua require('plugins')` from your init.vim
 
 return require('packer').startup(function(use)
-    use 'wbthomason/packer.nvim'
-
     -- Visual
 
     -- use { "ellisonleao/gruvbox.nvim" }
@@ -66,10 +64,7 @@ return require('packer').startup(function(use)
             { 'neovim/nvim-lspconfig' }, -- Required
             {
                 -- Optional
-                'williamboman/mason.nvim',
-                run = function()
-                    pcall(vim.cmd, 'MasonUpdate')
-                end,
+                'williamboman/mason.nvim'
             },
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
