@@ -1,6 +1,7 @@
 --This file can be loaded by calling `lua require('plugins')` from your init.vim
 
 return require('packer').startup(function(use)
+    use 'wbthomason/packer.nvim'
     -- Visual
 
     -- use { "ellisonleao/gruvbox.nvim" }
@@ -29,7 +30,7 @@ return require('packer').startup(function(use)
     }
 
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        'nvim-telescope/telescope.nvim', tag = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
@@ -39,11 +40,7 @@ return require('packer').startup(function(use)
 
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
 
-    use 'windwp/nvim-autopairs'
-
     use 'windwp/nvim-ts-autotag'
-
-    use('nvim-lua/plenary.nvim')
 
     use('ThePrimeagen/harpoon')
 
@@ -83,6 +80,15 @@ return require('packer').startup(function(use)
         }
     }
 
-    -- Project Switcher Config
-    use { "ahmedkhalf/project.nvim" }
+    -- -- Project Switcher Config
+    use {
+        "ahmedkhalf/project.nvim",
+        config = function()
+            require("project_nvim").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
+    }
 end)

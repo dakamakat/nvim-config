@@ -2,8 +2,6 @@ local lsp = require('lsp-zero')
 
 local lspconfig = require('lspconfig');
 
-lsp.preset("recommended")
-
 local cmp = require("cmp")
 
 local cmp_action = require('lsp-zero').cmp_action()
@@ -14,17 +12,8 @@ lsp.on_attach(function(client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
 end)
 
--- Fix Undefined global 'vim'
-lsp.configure('lua_ls', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
-})
-
+-- (Optional) Configure lua language server for neovim
+lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
 lspconfig.csharp_ls.setup({
     root_dir = function(startpath)
