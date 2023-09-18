@@ -12,35 +12,32 @@ lsp.on_attach(function(client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
 end)
 
-
-require("mason").setup()
-require("mason-lspconfig").setup()
-
-require("mason-lspconfig").setup_handlers {
-    -- The first entry (without a key) will be the default handler
-    -- and will be called for each installed server that doesn't have
-    -- a dedicated handler.
-    function(server_name) -- default handler (optional)
-        require("lspconfig")[server_name].setup {}
-    end,
-    -- Next, you can provide a dedicated handler for specific servers.
-    -- For example, a handler override for the `rust_analyzer`:
-    -- ["rust_analyzer"] = function ()
-    -- require("rust-tools").setup {}
-    -- end
-}
-
--- (Optional) Configure lua language server for neovim
-lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
-
-lspconfig.csharp_ls.setup({
-    root_dir = function(startpath)
-        return lspconfig.util.root_pattern("*.sln")(startpath)
-            or lspconfig.util.root_pattern("*.csproj")(startpath)
-            or lspconfig.util.root_pattern("*.fsproj")(startpath)
-            or lspconfig.util.root_pattern(".git")(startpath)
-    end,
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    ensure_installed = {
+        'csharp_ls',
+        'tsserver',
+        'eslint',
+        'rust_analyzer' },
+    handlers = {
+        lsp.default_setup,
+        csharp_ls = function()
+            lspconfig.csharp_ls.setup({
+                root_dir = function(startpath)
+                    return lspconfig.util.root_pattern("*.sln")(startpath)
+                        or lspconfig.util.root_pattern("*.csproj")(startpath)
+                        or lspconfig.util.root_pattern("*.fsproj")(startpath)
+                        or lspconfig.util.root_pattern(".git")(startpath)
+                end,
+            })
+        end,
+        lua_ls = function()
+            lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+        end
+    }
 })
+
+
 
 lsp.setup()
 
