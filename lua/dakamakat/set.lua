@@ -30,3 +30,4 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "95"
 
+vim.o.shell = "pwsh"
