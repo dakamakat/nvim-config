@@ -1,5 +1,12 @@
 local lsp = require('lsp-zero')
 
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    ensure_installed = {},
+    handlers = {
+        lsp.default_setup,
+    },
+})
 local lspconfig = require('lspconfig');
 
 local cmp = require("cmp")
@@ -62,8 +69,6 @@ cmp.setup({
 vim.diagnostic.config({
     virtual_text = true
 })
-
-vim.o.shell = vim.fn.executable('pwsh') and 'pwsh' or 'powershell'
 
 --LSP Actions
 --K: Displays hover information about the symbol under the cursor in a floating window. See :help vim.lsp.buf.hover().
