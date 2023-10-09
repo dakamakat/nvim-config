@@ -24,9 +24,7 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-tree/nvim-tree.lua',
-        -- requires = {
-        --     'nvim-tree/nvim-web-devicons', -- optional
-        -- },
+        requires = { { 'nvim-tree/nvim-web-devicons' } }
     }
 
     use {
@@ -39,8 +37,6 @@ return require('packer').startup(function(use)
     use "tpope/vim-commentary"
 
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
-
-    use 'windwp/nvim-ts-autotag'
 
     use('ThePrimeagen/harpoon')
 
@@ -59,10 +55,7 @@ return require('packer').startup(function(use)
         requires = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' }, -- Required
-            {
-                -- Optional
-                'williamboman/mason.nvim'
-            },
+            {'williamboman/mason.nvim'},-- Optional
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
             -- Autocompletion
@@ -79,6 +72,15 @@ return require('packer').startup(function(use)
             { 'rafamadriz/friendly-snippets' },
         }
     }
+
+    use 'simrat39/rust-tools.nvim'
+
+    use { "rcarriga/nvim-dap-ui",
+        requires = {
+            { "mfussenegger/nvim-dap" },
+            { "theHamsta/nvim-dap-virtual-text" }
+        } }
+
 
     -- -- Project Switcher Config
     use {
