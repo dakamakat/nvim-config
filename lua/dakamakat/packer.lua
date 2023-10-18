@@ -8,7 +8,9 @@ return require('packer').startup(function(use)
 
     -- use({ 'rose-pine/neovim', as = 'rose-pine' })
 
-    use 'folke/tokyonight.nvim'
+    use "rebelot/kanagawa.nvim"
+
+    -- use 'folke/tokyonight.nvim'
 
     -- use "Shatur/neovim-ayu"
 
@@ -54,8 +56,8 @@ return require('packer').startup(function(use)
         branch = 'v3.x',
         requires = {
             -- LSP Support
-            { 'neovim/nvim-lspconfig' }, -- Required
-            {'williamboman/mason.nvim'},-- Optional
+            { 'neovim/nvim-lspconfig' },             -- Required
+            { 'williamboman/mason.nvim' },           -- Optional
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
             -- Autocompletion
