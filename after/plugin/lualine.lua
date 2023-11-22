@@ -5,7 +5,7 @@ require('lualine').setup {
     --component_separators = { left = '', right = ''},
     --section_separators = { left = '', right = ''},
     icons_enabled = false,
-    theme = 'tokyonight',
+    theme = 'kanagawa',
     component_separators = { left = ' ', right = ' '},
     section_separators = { left = ' ', right = ' '},
     disabled_filetypes = {
