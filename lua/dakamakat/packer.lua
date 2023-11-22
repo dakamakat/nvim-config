@@ -34,6 +34,16 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
+    -- use {
+    --     "nvim-neotest/neotest",
+    --     requires = {
+    --         "rouge8/neotest-rust",
+    --         "Issafalcon/neotest-dotnet",
+    --         "nvim-lua/plenary.nvim",
+    --         "antoinemadec/FixCursorHold.nvim"
+    --     }
+    -- }
+
     use "folke/trouble.nvim"
 
     use "tpope/vim-commentary"
@@ -56,9 +66,9 @@ return require('packer').startup(function(use)
         branch = 'v3.x',
         requires = {
             -- LSP Support
-            { 'neovim/nvim-lspconfig' },             -- Required
             { 'williamboman/mason.nvim' },           -- Optional
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+            { 'neovim/nvim-lspconfig' },             -- Required
 
             -- Autocompletion
             { "hrsh7th/cmp-buffer" },                  -- buffer completions
