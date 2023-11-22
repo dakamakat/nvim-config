@@ -20,7 +20,7 @@ return require('packer').startup(function(use)
 
     use 'nvim-lualine/lualine.nvim'
 
-    -- use 'xiyaowong/transparent.nvim'
+    use 'xiyaowong/transparent.nvim'
 
     -- end of visual
 
