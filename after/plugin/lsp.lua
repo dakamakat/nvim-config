@@ -21,16 +21,16 @@ require('mason-lspconfig').setup({
         'rust_analyzer' },
     handlers = {
         lsp.default_setup,
-        csharp_ls = function()
-            lspconfig.csharp_ls.setup({
-                root_dir = function(startpath)
-                    return lspconfig.util.root_pattern("*.sln")(startpath)
-                        or lspconfig.util.root_pattern("*.csproj")(startpath)
-                        or lspconfig.util.root_pattern("*.fsproj")(startpath)
-                        or lspconfig.util.root_pattern(".git")(startpath)
-                end,
-            })
-        end,
+        -- csharp_ls = function()
+        --     lspconfig.csharp_ls.setup({
+        --         root_dir = function(startpath)
+        --             return lspconfig.util.root_pattern("*.sln")(startpath)
+        --                 or lspconfig.util.root_pattern("*.csproj")(startpath)
+        --                 or lspconfig.util.root_pattern("*.fsproj")(startpath)
+        --                 or lspconfig.util.root_pattern(".git")(startpath)
+        --         end,
+        --     })
+        -- end,
         lua_ls = function()
             lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
         end
