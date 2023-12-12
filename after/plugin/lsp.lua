@@ -1,45 +1,30 @@
-local lsp = require('lsp-zero')
+local lsp_zero = require('lsp-zero')
 
-local lspconfig = require('lspconfig');
-
-local cmp = require("cmp")
-
-local cmp_action = require('lsp-zero').cmp_action()
-
+--friendly snippets requirement
 require('luasnip.loaders.from_vscode').lazy_load()
 
-lsp.on_attach(function(client, bufnr)
-    lsp.default_keymaps({ buffer = bufnr })
+---@diagnostic disable-next-line: unused-local
+lsp_zero.on_attach(function(client, bufnr)
+    lsp_zero.default_keymaps({ buffer = bufnr })
 end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = {
-        'csharp_ls',
-        'tsserver',
-        'eslint',
-        'rust_analyzer' },
+    ensure_installed = { 'tsserver', 'rust_analyzer' },
     handlers = {
-        lsp.default_setup,
-        -- csharp_ls = function()
-        --     lspconfig.csharp_ls.setup({
-        --         root_dir = function(startpath)
-        --             return lspconfig.util.root_pattern("*.sln")(startpath)
-        --                 or lspconfig.util.root_pattern("*.csproj")(startpath)
-        --                 or lspconfig.util.root_pattern("*.fsproj")(startpath)
-        --                 or lspconfig.util.root_pattern(".git")(startpath)
-        --         end,
-        --     })
-        -- end,
+        lsp_zero.default_setup,
         lua_ls = function()
-            lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
-        end
+            local lua_opts = lsp_zero.nvim_lua_ls()
+            require('lspconfig').lua_ls.setup(lua_opts)
+        end,
     }
 })
 
+local cmp = require('cmp')
 
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
-lsp.setup()
+local cmp_action = require('lsp-zero').cmp_action()
 
 cmp.setup({
     snippet = {
@@ -48,16 +33,17 @@ cmp.setup({
         end,
     },
     mapping = cmp.mapping.preset.insert({
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.close(),
+        ['<Tab>'] = cmp_action.luasnip_supertab(),
+        ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
         ['<CR>'] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true
         }),
-        ['<Tab>'] = cmp_action.luasnip_supertab(),
-        ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
     }),
     sources = {
         { name = 'nvim_lsp' },
@@ -138,26 +124,26 @@ local codelldb_path = codelldb_root .. "adapter/codelldb"
 local liblldb_path = codelldb_root .. "lldb/lib/liblldb.so"
 
 dap.adapters.rust = {
-  type = "server",
-  port = "${port}",
-  host = "127.0.0.1",
-  executable = {
-    command = codelldb_path,
-    args = { "--liblldb", liblldb_path, "--port", "${port}" },
-  },
+    type = "server",
+    port = "${port}",
+    host = "127.0.0.1",
+    executable = {
+        command = codelldb_path,
+        args = { "--liblldb", liblldb_path, "--port", "${port}" },
+    },
 }
 
 dap.configurations.rust = {
-  {
-    name = "Rust debug",
-    type = "rust",
-    request = "launch",
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-  },
+    {
+        name = "Rust debug",
+        type = "rust",
+        request = "launch",
+        program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+    },
 }
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
