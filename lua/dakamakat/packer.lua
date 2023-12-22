@@ -129,4 +129,7 @@ return require('packer').startup(function(use)
                 datapath = vim.fn.stdpath("data"), }
         end
     }
+
+    --feel the sense
+    use 'Eandrju/cellular-automaton.nvim'
 end)
