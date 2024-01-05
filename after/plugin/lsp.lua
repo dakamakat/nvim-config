@@ -1,4 +1,5 @@
 local lsp_zero = require('lsp-zero')
+local lsp_config = require('lspconfig')
 
 --friendly snippets requirement
 require('luasnip.loaders.from_vscode').lazy_load()
@@ -10,12 +11,12 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { 'tsserver', 'rust_analyzer', 'csharp_ls' },
+    ensure_installed = { 'tsserver', 'rust_analyzer', 'omnisharp' },
     handlers = {
         lsp_zero.default_setup,
         lua_ls = function()
             local lua_opts = lsp_zero.nvim_lua_ls()
-            require('lspconfig').lua_ls.setup(lua_opts)
+            lsp_config.lua_ls.setup(lua_opts)
         end,
     }
 })
