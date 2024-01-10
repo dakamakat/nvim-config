@@ -5,7 +5,7 @@ source_directory="/home/dakamakat/.config/nvim/"
 destination_directory="/home/dakamakat/Projects/nvim-config/"
 
 # Use the first positional argument as the commit message, or provide a default message
-commit_message="${1:-Default commit message}"
+commit_message="${1:-default automatic minor update}"
 
 # Copy files with replacements
 rsync -rP --exclude=.git --exclude=node_modules "$source_directory/" "$destination_directory/"
