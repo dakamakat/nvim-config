@@ -8,10 +8,10 @@ destination_directory="/home/dakamakat/Projects/nvim-config/"
 commit_message="minor automatic config update"
 
 # Copy files with replacements
-rsync -r --exclude=.git --exclude=node_modules "$source_directory/" "$destination_directory/"
+rsync -rP --exclude=.git --exclude=node_modules "$source_directory/" "$destination_directory/"
 
 # Change to the destination directory
-cd "$destination_directory"
+cd "$destination_directory" || exit
 
 # Add all changes to Git
 git add .
