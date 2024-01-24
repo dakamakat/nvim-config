@@ -1,9 +1,9 @@
 return {
     "rcarriga/nvim-dap-ui",
-    enable = false,
     dependencies = {
         "mfussenegger/nvim-dap",
-        "theHamsta/nvim-dap-virtual-text"
+        "theHamsta/nvim-dap-virtual-text",
+        'williamboman/mason.nvim',           -- Optional
     },
     config = function()
         require("dapui").setup()
@@ -14,6 +14,7 @@ return {
 
         local netcoredbg = mason_registry.get_package("netcoredbg")
         local netcoredbg_path = netcoredbg:get_install_path() .. "/netcoredbg"
+
 
         dap.adapters.coreclr = {
             type = 'executable',
