@@ -7,6 +7,7 @@ return {
             defaults = {
                 -- Default configuration for telescope goes here:
                 -- config_key = value,
+                wrap_results = true,
                 mappings = {
                     i = {
                         -- map actions.which_key to <C-h> (default: <C-/>)
@@ -80,7 +81,6 @@ return {
         vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
         ----open project switcher
-        require('telescope').load_extension('projects')
         vim.keymap.set('n', '<C-p>', require 'telescope'.extensions.projects.projects)
 
         --  custom keybindings
