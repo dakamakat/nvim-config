@@ -15,8 +15,8 @@ return {
             },
 
             --     on_attach = my_on_attach,
-
             renderer = {
+                group_empty = true,
                 root_folder_modifier = ":t",
                 -- These icons are visible when you install web-devicons
                 icons = {

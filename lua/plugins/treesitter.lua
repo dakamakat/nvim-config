@@ -7,7 +7,8 @@ return {
         require 'nvim-treesitter.install'.compilers = { "clang" }
 
         ts.setup {
-            ensure_installed = { "bicep",
+            ensure_installed = {
+                "bicep",
                 "javascript",
                 "typescript",
                 "c_sharp",
