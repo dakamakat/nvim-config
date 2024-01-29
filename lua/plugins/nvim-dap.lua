@@ -1,19 +1,22 @@
 return {
-    "rcarriga/nvim-dap-ui",
+    "mfussenegger/nvim-dap",
     dependencies = {
-        "mfussenegger/nvim-dap",
+        "rcarriga/nvim-dap-ui",
         "theHamsta/nvim-dap-virtual-text",
-        'williamboman/mason.nvim',           -- Optional
+        'williamboman/mason.nvim', -- Optional
     },
     config = function()
         require("dapui").setup()
         require("nvim-dap-virtual-text").setup()
 
         local dap, dapui = require("dap"), require("dapui")
-        local mason_registry = require("mason-registry")
+        local mason = require("mason")
 
-        local netcoredbg = mason_registry.get_package("netcoredbg")
-        local netcoredbg_path = netcoredbg:get_install_path() .. "/netcoredbg"
+        mason.setup();
+
+        local mason_registry = require("mason-registry")
+        local netcoredbg = mason_registry.get_package('netcoredbg')
+        local netcoredbg_path = netcoredbg:get_install_path() .. "./netcoredbg"
 
 
         dap.adapters.coreclr = {

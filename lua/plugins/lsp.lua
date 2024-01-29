@@ -8,6 +8,7 @@ return {
         'neovim/nvim-lspconfig',             -- Required
 
         -- Autocompletion
+        "hrsh7th/cmp-cmdline",                 -- cmd line completions
         "hrsh7th/cmp-buffer",                  -- buffer completions
         "hrsh7th/cmp-path",                    -- path completions
         "saadparwaiz1/cmp_luasnip",            -- snippet completions
@@ -49,6 +50,29 @@ return {
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
         local cmp_action = require('lsp-zero').cmp_action()
+
+        -- `/` cmdline setup.
+        cmp.setup.cmdline('/', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+                { name = 'buffer' }
+            }
+        })
+
+        -- `:` cmdline setup.
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = 'path' }
+            }, {
+                {
+                    name = 'cmdline',
+                    option = {
+                        ignore_cmds = { 'Man', '!' }
+                    }
+                }
+            })
+        })
 
         cmp.setup({
             snippet = {
@@ -116,3 +140,4 @@ return {
 --[d: Move to the previous diagnostic in the current buffer. See :help vim.diagnostic.goto_prev().
 --
 --]d: Move to the next diagnostic. See :help vim.diagnostic.goto_next().
+--
