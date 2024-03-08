@@ -8,7 +8,6 @@ return {
 
         ts.setup {
             ensure_installed = {
-                "bicep",
                 "javascript",
                 "typescript",
                 "c_sharp",

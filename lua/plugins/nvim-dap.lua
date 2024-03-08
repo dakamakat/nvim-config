@@ -5,6 +5,7 @@ return {
         "theHamsta/nvim-dap-virtual-text",
         'williamboman/mason.nvim', -- Optional
     },
+    enabled = false,
     config = function()
         require("dapui").setup()
         require("nvim-dap-virtual-text").setup()
