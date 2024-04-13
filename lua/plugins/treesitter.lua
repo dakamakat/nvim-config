@@ -8,6 +8,7 @@ return {
 
         ts.setup {
             ensure_installed = {
+                "json",
                 "javascript",
                 "typescript",
                 "c_sharp",

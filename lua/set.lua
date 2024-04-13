@@ -36,3 +36,6 @@ vim.g.loaded_netrwPlugin = 1
 
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
+
+-- make statusline replace with cmd on paste
+vim.opt.cmdheight=0
