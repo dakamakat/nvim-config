@@ -6,10 +6,10 @@ return {
     config = function()
         require("catppuccin").setup({
             flavour = "mocha", -- latte, frappe, macchiato, mocha
-            background = {     -- :h background
-                light = "latte",
-                dark = "mocha",
-            },
+            -- background = {     -- :h background
+            --     light = "latte",
+            --     dark = "mocha",
+            -- },
             transparent_background = true, -- disables setting the background color.
             show_end_of_buffer = false,    -- shows the '~' characters after the end of buffers
             term_colors = false,           -- sets terminal colors (e.g. `g:terminal_color_0`)
@@ -42,13 +42,31 @@ return {
             integrations = {
                 cmp = true,
                 lsp_trouble = true,
-                mason = true,
+                mason = false,
                 gitsigns = true,
                 nvimtree = true,
                 telescope = { enabled = true },
                 harpoon = true,
                 treesitter = true,
                 notify = false,
+                native_lsp = {
+                    enabled = true,
+                    virtual_text = {
+                        errors = { "italic" },
+                        hints = { "italic" },
+                        warnings = { "italic" },
+                        information = { "italic" },
+                    },
+                    underlines = {
+                        errors = { "underline" },
+                        hints = { "underline" },
+                        warnings = { "underline" },
+                        information = { "underline" },
+                    },
+                    inlay_hints = {
+                        background = true,
+                    },
+                },
                 mini = {
                     enabled = true,
                     indentscope_color = "",
