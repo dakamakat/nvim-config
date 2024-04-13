@@ -1,13 +1,13 @@
 return {
     'folke/tokyonight.nvim',
     lazy = false,    -- make sure we load this during startup if it is your main colorscheme
-    enabled = true,
+    enabled = false,
     priority = 1000, -- make sure to load this before all the other start plugins
     opts = {
         ---@diagnostic disable: undefined-doc-name
         -- your configuration comes here
         -- or leave it empty to use the default settings
-        style = "storm",        -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+        style = "moon",        -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
         light_style = "day",    -- The theme is used when the background is set to light
         transparent = true,    -- Enable this to disable setting the background color
         terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
