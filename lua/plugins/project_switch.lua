@@ -22,10 +22,10 @@ return {
 
             -- Don't calculate root dir on specific directories
             -- Ex: { "~/.cargo/*", ... }
-            exclude_dirs = {},
+            exclude_dirs = {"src"},
 
             -- Show hidden files in telescope
-            show_hidden = false,
+            show_hidden = true,
 
             -- When set to false, you will get a message when project.nvim changes your
             -- directory.
