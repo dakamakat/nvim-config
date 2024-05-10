@@ -35,9 +35,12 @@ return {
             lsp_zero.default_keymaps({ buffer = bufnr })
         end)
 
+        local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+
         require('mason').setup({})
         require('mason-lspconfig').setup({
             ensure_installed = { 'tsserver', 'rust_analyzer', 'csharp_ls' },
+            lsp_capabilities = lsp_capabilities,
             handlers = {
                 lsp_zero.default_setup,
                 lua_ls = function()
@@ -108,12 +111,9 @@ return {
                 { name = 'nvim_lua' },
             },
             window = {
-
                 completion = cmp.config.window.bordered(),
 
                 documentation = cmp.config.window.bordered(),
-
-
             }
         })
 

@@ -13,9 +13,12 @@ return {
                 enable = true,
                 update_root = true
             },
-
+            view = {
+                side = "right",
+            },
             --     on_attach = my_on_attach,
             renderer = {
+                highlight_git = true,
                 group_empty = true,
                 root_folder_modifier = ":t",
                 -- These icons are visible when you install web-devicons
