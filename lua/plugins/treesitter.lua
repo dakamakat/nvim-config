@@ -13,6 +13,7 @@ return {
                 "typescript",
                 "c_sharp",
                 "sql",
+                "go",
                 "yaml",
                 "rust",
                 "vim",
