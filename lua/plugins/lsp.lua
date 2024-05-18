@@ -39,7 +39,7 @@ return {
 
         require('mason').setup({})
         require('mason-lspconfig').setup({
-            ensure_installed = { 'tsserver', 'rust_analyzer' , 'gopls' },
+            ensure_installed = { 'tsserver', 'rust_analyzer' , 'gopls' , 'yamlls' },
             lsp_capabilities = lsp_capabilities,
             handlers = {
                 lsp_zero.default_setup,

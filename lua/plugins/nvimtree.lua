@@ -6,7 +6,7 @@ return {
     },
     config = function()
         -- pass to setup along with your other options
-        require("nvim-tree").setup {
+        require("nvim-tree").setup({
             sync_root_with_cwd = true,
             respect_buf_cwd = true,
             update_focused_file = {
@@ -46,7 +46,7 @@ return {
                     error = "E",
                 },
             },
-        }
+        })
 
         vim.keymap.set("n", "<leader>fv", ":NvimTreeToggle<CR>", { silent = true })
     end
