@@ -1,6 +1,6 @@
 return {
     "folke/trouble.nvim",
-    branch = "dev", -- IMPORTANT!
+    branch = "main", -- IMPORTANT!
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
         {

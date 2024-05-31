@@ -7,7 +7,7 @@ return {
         "nvim-neotest/nvim-nio",
         'williamboman/mason.nvim', -- Optional
     },
-    enabled = true,
+    enabled = false,
     config = function()
         local dap, ui = require("dap"), require("dapui")
         local mason = require("mason")
@@ -19,26 +19,6 @@ return {
         mason.setup();
 
         local mason_registry = require("mason-registry")
-        local netcoredbg = mason_registry.get_package('netcoredbg')
-        local netcoredbg_path = netcoredbg:get_install_path() .. "./netcoredbg"
-
-
-        dap.adapters.coreclr = {
-            type = 'executable',
-            command = netcoredbg_path,
-            args = { '--interpreter=vscode' }
-        }
-
-        dap.configurations.cs = {
-            {
-                type = "coreclr",
-                name = "launch - netcoredbg",
-                request = "launch",
-                program = function()
-                    return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
-                end,
-            },
-        }
 
         local codelldb_root = mason_registry.get_package("codelldb"):get_install_path() .. "/extension/"
         local codelldb_path = codelldb_root .. "adapter/codelldb"
