@@ -36,6 +36,9 @@ return {
         end)
 
         local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+        local config = {
+            cmd = { "/home/dakamakat/Projects/csharp-language-server/src/CSharpLanguageServer/bin/Release/net8.0/CSharpLanguageServer" },
+        }
 
         require('mason').setup({})
         require('mason-lspconfig').setup({
@@ -47,6 +50,9 @@ return {
                     local lua_opts = lsp_zero.nvim_lua_ls()
                     lsp_config.lua_ls.setup(lua_opts)
                 end,
+                csharp_ls = function()
+                    lsp_config.csharp_ls.setup(config)
+                end
             }
         })
 
