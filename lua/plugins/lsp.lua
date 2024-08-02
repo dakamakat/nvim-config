@@ -36,23 +36,19 @@ return {
         end)
 
         local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-        local config = {
-            cmd = { "/home/dakamakat/Projects/csharp-language-server/src/CSharpLanguageServer/bin/Release/net8.0/CSharpLanguageServer" },
-        }
+
+        lsp_config.lua_ls.setup({}) -- configure lua ls server
 
         require('mason').setup({})
         require('mason-lspconfig').setup({
             ensure_installed = { 'tsserver', 'rust_analyzer', 'gopls', 'yamlls', 'csharp_ls' },
             lsp_capabilities = lsp_capabilities,
             handlers = {
-                lsp_zero.default_setup,
-                lua_ls = function()
-                    local lua_opts = lsp_zero.nvim_lua_ls()
-                    lsp_config.lua_ls.setup(lua_opts)
+                --- this first function is the "default handler"
+                --- it applies to every language server without a "custom handler"
+                function(server_name)
+                    require('lspconfig')[server_name].setup({})
                 end,
-                csharp_ls = function()
-                    lsp_config.csharp_ls.setup(config)
-                end
             }
         })
 
@@ -128,7 +124,6 @@ return {
             virtual_text = true,
             float = {
                 -- UI.
-                header = false,
                 border = 'rounded',
                 focusable = true,
             }

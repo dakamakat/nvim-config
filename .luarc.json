@@ -1,5 +1,11 @@
 {
     "diagnostics.disable": [
-        "undefined-doc-class"
+        "undefined-doc-class",
+        "undefined-global"
+    ],
+    "diagnostics.globals": [
+        "vim",
+        "asdasd",
+        "adsa"
     ]
 }
