@@ -1,6 +1,6 @@
 return {
     "seblj/roslyn.nvim",
-    enabled = true,
+    enabled = false,
     config = function()
         require("roslyn").setup({
             config = {
