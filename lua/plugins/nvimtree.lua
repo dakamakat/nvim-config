@@ -15,6 +15,7 @@ return {
             },
             view = {
                 side = "right",
+                adaptive_size = true,
             },
             --     on_attach = my_on_attach,
             renderer = {
