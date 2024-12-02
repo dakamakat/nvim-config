@@ -121,6 +121,9 @@ return {
                 desc = 'LSP actions',
                 callback = function(event)
                     local opts = { buffer = event.buf }
+                    local bufopts = { noremap = true, silent = true, buffer = event.buf }
+
+                    vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, bufopts)
 
                     vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
                     vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
@@ -135,16 +138,6 @@ return {
                 end,
             })
 
-            vim.diagnostic.config({
-                underline = true,
-                virtual_text = true,
-                float = {
-                    -- UI.
-                    border = 'rounded',
-                    focusable = true,
-                }
-            })
-
             require('mason-lspconfig').setup({
                 ensure_installed = {},
                 handlers = {
@@ -153,6 +146,20 @@ return {
                     function(server_name)
                         require('lspconfig')[server_name].setup({})
                     end,
+                }
+            })
+
+            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+                border = "rounded",
+            })
+
+            vim.diagnostic.config({
+                underline = true,
+                virtual_text = true,
+                float = {
+                    -- UI.
+                    border = 'rounded',
+                    focusable = true,
                 }
             })
         end
