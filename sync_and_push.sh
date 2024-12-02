@@ -2,7 +2,7 @@
 
 # Set your source and destination directories
 source_directory="/home/dakamakat/.config/nvim/"
-destination_directory="/home/dakamakat/Projects/nvim-config/"
+destination_directory="/home/dakamakat/projects/nvim-config/"
 
 # Use the first positional argument as the commit message, or provide a default message
 commit_message="${1:-default automatic minor update}"
