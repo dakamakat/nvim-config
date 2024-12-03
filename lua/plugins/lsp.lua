@@ -120,21 +120,32 @@ return {
             vim.api.nvim_create_autocmd('LspAttach', {
                 desc = 'LSP actions',
                 callback = function(event)
-                    local opts = { buffer = event.buf }
-                    local bufopts = { noremap = true, silent = true, buffer = event.buf }
+                    local opts = { noremap = true, silent = true, buffer = event.buf }
 
-                    vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, bufopts)
+                    -- Helper function for key mappings
+                    local function map(mode, lhs, rhs, options)
+                        vim.keymap.set(mode, lhs, rhs, options)
+                    end
 
-                    vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-                    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-                    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-                    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-                    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-                    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-                    vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-                    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-                    vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-                    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+                    map("n", "<space>e", vim.diagnostic.open_float, opts)
+
+                    local builtin = require "telescope.builtin"
+
+                    vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
+
+                    --Telescope builtins
+                    map("n", "gd", builtin.lsp_definitions, opts)
+                    map("n", "gr", builtin.lsp_references, opts)
+                    map("n", "gD", vim.lsp.buf.declaration, opts)
+                    map("n", "gT", vim.lsp.buf.type_definition, opts)
+                    map("n", "K", vim.lsp.buf.hover, opts)
+
+                    map("n", "<F2>", vim.lsp.buf.rename, opts)
+                    map("n", "<F4>", vim.lsp.buf.code_action, opts)
+                    map("n", "<space>wd", builtin.lsp_document_symbols, opts)
+                    map('n', 'gi', vim.lsp.buf.implementation, opts)
+                    map('n', 'gs', vim.lsp.buf.signature_help, opts)
+                    map('n', '<F3>', function() vim.lsp.buf.format({ async = true }) end, opts)
                 end,
             })
 
