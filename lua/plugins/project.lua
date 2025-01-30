@@ -1,11 +1,12 @@
 return {
-
   "coffebar/neovim-project",
   opts = {
     projects = { -- define project roots
       "~/projects/*",
       "~/projects/quod/*",
       "~/projects/rwe/*",
+      "~/projects/lotus/*",
+      "~/projects/games/*",
       "~/.config/nvim",
     },
     picker = {
